@@ -2,15 +2,16 @@
 \chapter{}
 \section{Sharks in eddies}
 
-\addcontentsline{toc}{subsection}{Summary}
-\subsection*{SUMMARY}
+\addcontentsline{toc}{subsection}{Summary and status}
+\subsection*{Summary and status}
 \hrule
 Here is a summary of some results from this project.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{NEXT TO-DO}
+\addcontentsline{toc}{subsection}{To-do list}
+\subsection*{To-do list}
 \hrule
 
 \begin{enumerate}
@@ -20,27 +21,68 @@ Here is a summary of some results from this project.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\addcontentsline{toc}{subsection}{Log}
-\subsection*{LOG}
+\addcontentsline{toc}{subsection}{Research log}
+\subsection*{Research log}
 \hrule
 %%%%%%%%%%%%%%%%%%
-\hrulefill
-\begin{large} \textbf{6 March 2018} \end{large} \\
+\vspace{10pt}
+
+\begin{large} \textbf{01 Jan 2019} \end{large} \hrulefill
+\\
 %%%%%%%%%%%%%%%%%%
-An entry from March 6th, with some code on running qualimap.
+Details for the overall workflow of the collocation routine.
 
 \begin{minted}{r}
-## example to insert small amounts of r code
-setwd()
+## Intro
+Goal is to collocate Argos-based positions from tagged marine animals to mesoscale eddies from the AVISO eddy atlas.
+
+## Prepare the movement data
+
+## a function that takes Argos data (from eTUFF), some simulation parameters (opt) and optional PSAT data (i.e. double-tagged fish; from eTUFF)
+## output should be of class move
+build_move()
+
+## get (if needed), read (req'd) and prepare (if needed such as spat/temp subset) the AVISO eddies atlas.
+eddies <- get_eddies()
+
+## do all the eddy prep (if needed) like meander filters, calc net zonal displacement, etc
+prep_eddies()
+
+## Collocate and selection
+Here we collocate the movement data to the eddies and calculate some basic stats. Also quantify eddy "selection" and/or R_pred
+
+## take data of class move and the prepped eddies (maybe custom class also?) and produce stats
+collocate_eddies()
+
+## some way of quantifying selection or orientation to/from eddies. maybe R_pred or step selection function
+choose_eddies()
+
+## build eddy-centric composites (HYCOM?) and their anomalies (WOA?). probably should be based on region and/or eddy origin
+composite_eddies()
+
+## Plotting
+Build eddy composites, static collocation figures, and animations.
+
+## plot eddy-centric 2d and 3d composites (separate internal functions?). 3d primarily temperature. 2d could be temp, chl, etc. probably should be based on region and/or eddy origin
+plot_composite()
+
+## figs similar to blues3d Fig 1: static fig (one per indiv or taxa per region?). includes eddy collocation circles, eddy-centric histograms, and a map
+plot_eddies()
+
+## 
+animate_eddies()
+
+
 \end{minted}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\addcontentsline{toc}{subsection}{Third subsection}
-\subsection*{ANOTHER SUBSECTION}
-\hrule
-Here are some details in another subsection of information.
+
+
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
