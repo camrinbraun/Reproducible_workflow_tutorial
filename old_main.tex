@@ -1,0 +1,199 @@
+%Set up the document and load packages
+\documentclass[letterpaper, 12pt]{article}
+
+
+%---------------------------------------- + ---- + ---- + ---- + 
+\setlength{\parskip}{1ex plus0.5ex minus0.5ex}
+\setlength{\textheight}{9.0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in} %% remove if using latex, rather than pdflatex
+\setlength{\oddsidemargin}{0in}
+%---------------------------------------- + ---- + ---- + ---- + 
+\usepackage[T1]{fontenc}
+%\usepackage[dvipdfm]{graphicx}
+%\usepackage{bmpsize}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage{adjustbox}
+\usepackage{blindtext}
+\usepackage{isotope} %Makes it easier to write isotope superscripts
+\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{array} 
+\usepackage{siunitx} %SI units
+\usepackage[width=.75\textwidth]{caption}
+\usepackage[english]{babel}
+\usepackage[autostyle]{csquotes}
+\usepackage{pdfpages}
+\usepackage{textcomp} %for trademark and copyright symbols
+\usepackage{graphicx} %for adding figures
+\usepackage{natbib} %to get author-year citations
+\bibpunct{(}{)}{,}{}{}{,} %defines how citation punctuation works
+\usepackage{lineno} % for line numbering
+\usepackage{setspace} %\doublespacing
+\usepackage{rotating}
+\usepackage{float} %to get displays to stay where one puts them
+\usepackage{hyperref} %use this to add URLs conveniently
+\usepackage{verbatim} %Use to paste txt files into document verbatim 
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Begin the document %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\noindent {\large \bf This is my awesome title} 
+
+\medskip
+
+\noindent {\large Your name\textsuperscript{1}}
+
+\bigskip   
+
+\noindent \parbox[t]{6.5in}{\textsuperscript{1}Department of Botany, University of
+  Wyoming, Laramie, WY 82071, USA}
+
+\vspace{2in}
+
+\noindent \emph{Corresponding author}: \parbox[t]{4in}{Its me!\\
+  1000 E. University Ave.\\
+  Department of Botany, 3165\\
+  University of Wyoming\\
+  Laramie, WY 82071, USA\\
+  youremail@uwyo.edu\\
+  Fax: who still uses this?
+}
+
+\bigskip
+
+\noindent 
+\emph{Keywords:} all the best things
+
+\bigskip
+\noindent \emph{Running title: Reproducibility!}
+
+\bigskip
+
+\noindent Author contributions: XYZ
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%
+% Begin manuscript %
+%%%%%%%%%%%%%%%%%%%%
+
+\section*{Abstract}
+The greatest study ever!
+
+
+\begin{linenumbers} %Turn on line numbering.
+\section*{Introduction} %The * turns off section numbering. 
+
+This document serves as an example of how to make a reproducible workflow--from R to manuscript. 
+For this example, you must link your Overleaf project to a git repo, then link your R project to the same repo. For more on how to do this see Jessi Rick's tutorial \href{https://github.com/jessicarick/resources}{(click here)}.
+
+The figure and one of the tables in this manuscript are R script outputs. We run Make to update these and our manuscript. See the document ``How to use Make'' that is in this repo for more. 
+\begin{center}
+    \emph{Why use \LaTeX?}
+\end{center}
+
+As you will see, \LaTeX\ helps with reproducibility, saves you time inputting results into your manuscript, keeps you from screwing up stuff like adding data to tables or misnumbering figures, makes it easy to format a manuscript however you want, avoid having figures move around like they do in Word, avoid the damnable compression algorithm that Word uses that makes your figures look like crap, keep you from writing or formatting citations, allow you to format your manuscript as required for your journal with minimal effort using style templates, write waaay better math (this alone could be a selling point, if you do the math), built in version control with Overleaf, the ability to build document classes for templates that you commonly use, like reference/cover letters....probably more stuff that I am not remembering. 
+
+However, \LaTeX\ has a bit of a learning curve that can be frustrating at first. Persevere, get comfortable Googling stuff that you can't figure out, and soon under no circumstances would you go back to using Word. 
+
+As mentioned, a benefit of \LaTeX\  is easy, streamlined citation incorporation. You can source a bib file and make use of any of the citations therein with the citep, citet, citalt, and other cite commands. For more \href{https://www.imperial.ac.uk/media/imperial-college/administration-and-support-services/library/public/LaTeX-and-BibTeX-branded-jan-2016.pdf}{click (here)}
+
+RECOMMENDED: You can also link your citation manager to your Overleaf project. See how to do that by clicking \href{https://www.overleaf.com/learn/latex/Bibliography_management_with_bibtex}{(here)}. This is very handy since you can simply refresh as needed to quickly bring new citations into your manuscript. Note where we define the bibliography after the acknowledgements. At that point we specify style. You can download citation styles for many journals, so never reformat citations by hand!
+
+TIP:  
+To add R code to your document one has to first change the .tex ending to .Rtex (at least with Overleaf). See actual Tex file for example of how to add a code chunk.
+%<<echo=FALSE>>= 
+%Your code
+%@ %end of chunk
+
+Use \$\textbackslash Sexpr\{X = 2:10;length(X)\}\$ to add R code output straight inline. See more here at this knitr tutorial: \url{https://www.overleaf.com/learn/latex/Knitr}
+
+\section*{Methods}
+
+\section*{Results}
+Here are is our scatter plot (Fig.~\ref{fig:scatterplot}). Note that the number of the figure is automatically updated based on its order in the figure section. This is another handy thing about \LaTeX. One does not have to worry about accidentally misnumbering a figure in the text after moving figures around (particularly nice for those pesky supplemental figures that often get misnumbered).
+
+Here are some made up results (Table.~\ref{table:simpleExample}) and also check out results from our linear regression (Table.~\ref{table:lm_results}). The cool thing here is that for the latter table we output the results straight from R via the xtable package. This package takes a matrix object and converts it into the appropriate format for \LaTeX\ (see the associated R script linearModel.R in the Supplemental Material).
+
+\section*{Discussion}
+
+\section*{Acknowledgments}
+Funding was provided by XXXX. Computing was performed in the Teton Computing Environment at the Advanced Research Computing Center, University of Wyoming, Laramie (https://doi.org/10.15786/M2FY47).
+
+\section*{Data availability}
+All scripts and processed data are available at:
+
+\end{linenumbers}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Make bibliography %
+%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{apa}
+\bibliography{Zotero.bib} %Zotero is free and works great
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Figures and tables %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\begin{figure}[H]
+    \centering
+    %NOTE: using natwidth,natheight is clunky, but allows this file to be compiled without error by pdflatex. If you don't use pdflatex, then don't use these options
+    %natwidth=8in,natheight=8in
+    \includegraphics[width=0.9\textwidth]{./results/scatterplot.pdf}
+  \captionsetup{width=0.75\textwidth}
+  \caption{A scatterplot of some random data}
+    	\label{fig:scatterplot} %Use this label to reference the figure in the text.
+\end{figure}
+
+%Example code to render a table
+\pagebreak
+\begin{table}[H]
+    \centering
+	\caption{Example table.}
+	\label{table:simpleExample}
+	\begin{tabular}{ccc} %lrc means left, right, or center justified
+    \hline
+	Treatment 1 & Treatment 2 & Sample size \\
+    \hline
+	 Yes & Yes & 62\\
+	 Yes & No & 68\\
+	 No & Yes & 54\\
+	 No & No & 54\\
+	 \hline
+    & Controls & \\
+    \hline
+     Yes & Yes & 13\\
+	 Yes & No & 13\\
+	 No & Yes & 18\\
+	 No & No & 18\\
+	\hline
+	\end{tabular}
+\end{table}
+
+%Or, we can source tables output directly from R, a way better solution!
+\input{./results/lm_results.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Supplemental material %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\subsection*{Supplementary Material}
+%%% the following command will set up separate numbering for
+%%% Supplemental Tables and Figures
+\setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}}
+\setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}
+
+R scripts used follow. Note that much cleaner output can be generated using R Markdown. Please see Jessi Rick's tutorial (linked above) for information on how to do that. 
+%Here is how to include R scripts, or any other text file verbatim. 
+\verbatiminput{linearModel.R}
+--------------------
+\verbatiminput{scatterplot.R}
+
+\end{document}
